@@ -22,6 +22,10 @@
 		DD0EEB542AEC8E1C00347E2A /* InitiativeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0EEB532AEC8E1C00347E2A /* InitiativeViewController.swift */; };
 		DD0EEB562AEC917200347E2A /* AddInitiativeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0EEB552AEC917200347E2A /* AddInitiativeViewController.swift */; };
 		DD0EEB582AEC918400347E2A /* AddAppealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0EEB572AEC918400347E2A /* AddAppealViewController.swift */; };
+		DD85A3F22AF03CBD00A9EC5B /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD85A3F12AF03CBD00A9EC5B /* LogInViewController.swift */; };
+		DD85A3F42AF03CF000A9EC5B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD85A3F32AF03CF000A9EC5B /* SignUpViewController.swift */; };
+		DD85A3F62AF03D4900A9EC5B /* UserDonationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD85A3F52AF03D4900A9EC5B /* UserDonationViewController.swift */; };
+		DD85A3F82AF03D5400A9EC5B /* UserAppealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD85A3F72AF03D5400A9EC5B /* UserAppealViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +46,10 @@
 		DD0EEB532AEC8E1C00347E2A /* InitiativeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitiativeViewController.swift; sourceTree = "<group>"; };
 		DD0EEB552AEC917200347E2A /* AddInitiativeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInitiativeViewController.swift; sourceTree = "<group>"; };
 		DD0EEB572AEC918400347E2A /* AddAppealViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAppealViewController.swift; sourceTree = "<group>"; };
+		DD85A3F12AF03CBD00A9EC5B /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		DD85A3F32AF03CF000A9EC5B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		DD85A3F52AF03D4900A9EC5B /* UserDonationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDonationViewController.swift; sourceTree = "<group>"; };
+		DD85A3F72AF03D5400A9EC5B /* UserAppealViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAppealViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +98,10 @@
 				DD0EEB532AEC8E1C00347E2A /* InitiativeViewController.swift */,
 				DD0EEB552AEC917200347E2A /* AddInitiativeViewController.swift */,
 				DD0EEB572AEC918400347E2A /* AddAppealViewController.swift */,
+				DD85A3F12AF03CBD00A9EC5B /* LogInViewController.swift */,
+				DD85A3F32AF03CF000A9EC5B /* SignUpViewController.swift */,
+				DD85A3F52AF03D4900A9EC5B /* UserDonationViewController.swift */,
+				DD85A3F72AF03D5400A9EC5B /* UserAppealViewController.swift */,
 			);
 			path = Farooqui_QasimAli_BetaApp;
 			sourceTree = "<group>";
@@ -171,10 +183,14 @@
 				DD0EEB522AEB6B7600347E2A /* AppealViewController.swift in Sources */,
 				DD0EEB4C2AE737EE00347E2A /* FundCare.xcdatamodeld in Sources */,
 				DD0EEB492AE7335A00347E2A /* ExpenditureViewController.swift in Sources */,
+				DD85A3F22AF03CBD00A9EC5B /* LogInViewController.swift in Sources */,
 				DD0EEB502AE7512800347E2A /* AddDonationsController.swift in Sources */,
+				DD85A3F42AF03CF000A9EC5B /* SignUpViewController.swift in Sources */,
 				DD0EEB332AE7109A00347E2A /* AppDelegate.swift in Sources */,
+				DD85A3F82AF03D5400A9EC5B /* UserAppealViewController.swift in Sources */,
 				DD0EEB4E2AE7511300347E2A /* AddExpenditureController.swift in Sources */,
 				DD0EEB472AE7334C00347E2A /* DonationsViewController.swift in Sources */,
+				DD85A3F62AF03D4900A9EC5B /* UserDonationViewController.swift in Sources */,
 				DD0EEB352AE7109A00347E2A /* SceneDelegate.swift in Sources */,
 				DD0EEB582AEC918400347E2A /* AddAppealViewController.swift in Sources */,
 			);

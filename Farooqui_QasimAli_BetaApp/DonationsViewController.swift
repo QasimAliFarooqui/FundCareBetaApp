@@ -124,6 +124,12 @@ extension DonationsViewController: UITableViewDelegate, UITableViewDataSource{
        if editingStyle == UITableViewCell.EditingStyle.delete{
            donationTable.beginUpdates()
            context.delete(expense)
+           
+           // Next, find and delete the corresponding record from the Summary entity
+           if let summaryToDelete = findSummaryRecordForExpense(expense) {
+               context.delete(summaryToDelete)
+           }
+           
            //expenseTable.reloadData()
            do{
                try context.save()
@@ -138,6 +144,24 @@ extension DonationsViewController: UITableViewDelegate, UITableViewDataSource{
 
        }
    }
+    
+    func findSummaryRecordForExpense(_ expense: Donations) -> Summary? {
+        // Implement a method to find the corresponding Summary record based on some criteria (e.g., matching attributes)
+        // Return the Summary record if found, or nil if not found
+        // You should implement this based on how you determine the correspondence between Expenditure and Summary records.
+        // Example:
+        if let title = expense.title {
+            let fetchRequest: NSFetchRequest<Summary> = Summary.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "title == %@", title)
+            do {
+                let results = try context.fetch(fetchRequest)
+                return results.first
+            } catch {
+                print("Error fetching Summary record: \(error)")
+            }
+        }
+        return nil
+    }
     
 //   //perforn the segue for the table when a table is selected
 //   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
