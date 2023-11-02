@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class ExpenditureViewController: UIViewController {
+class ExpenditureViewController: UIViewController, AddExpenditureDelegate {
 
     //Expense entity to change later and context
     var bills:[Expenditure]?
@@ -42,11 +42,19 @@ class ExpenditureViewController: UIViewController {
         //    try context.save()
        // }catch{}
     }
+    
     //Reload the data for the expense table
     func reloadData(){
         fetchBills()
         DispatchQueue.main.async(execute:{self.expenditureTable.reloadData()})
     }
+    
+    //Implementing the delegate method.
+    func didAddExpenditure() {
+        DispatchQueue.main.async {
+            self.viewDidLoad()
+            }
+       }
     
 //    //Prepare the segue, send the current row to EditExpenseController and set the destination
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -58,6 +66,20 @@ class ExpenditureViewController: UIViewController {
 //
 //        }
 //    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            if segue.identifier == "seg_expenditure_to_add" {
+                if let addExpenditureController = segue.destination as? AddExpenditureController {
+                    // Set the delegate to self
+                    addExpenditureController.delegate = self
+                }
+            }
+            if segue.identifier == "expenditureToEdit"{
+                        let detailed_view = segue.destination as! EditExpenditureViewController
+                        detailed_view.selectedBill = selectedBill
+            
+            }
+        }
     
     //viewDidAppear needed to refresh the view when changes are made and fetch the expense data and table
     override func viewDidAppear(_ animated: Bool) {
@@ -163,11 +185,13 @@ extension ExpenditureViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     
-//    //perform the segue for row selected and send the row
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//
-//        selectedBill = bills![indexPath.row]
-//        self.performSegue(withIdentifier: "ExpenseToEdit", sender: self)
-//
-//    }
+    //perform the segue for row selected and send the row
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        selectedBill = bills![indexPath.row]
+        self.performSegue(withIdentifier: "expenditureToEdit", sender: self)
+
+    }
+    
+    
 }

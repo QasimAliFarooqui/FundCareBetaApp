@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class InitiativeViewController: UIViewController {
+class InitiativeViewController: UIViewController, AddInitiativeDelegate {
     
     //Create object variables and context and the reload data function
     var initiatives:[Initiative] = []
@@ -23,6 +23,13 @@ class InitiativeViewController: UIViewController {
         DispatchQueue.main.async(execute:{self.initiativeTable.reloadData()})
     }
     
+    //Implementing the delegate method
+    func didAddInitiative() {
+        DispatchQueue.main.async {
+            self.viewDidLoad()
+        }
+    }
+    
     //Prepare the segue to IncomeToEdit for editing rows
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 //        // Get the new view controller using segue.destination.
@@ -33,6 +40,21 @@ class InitiativeViewController: UIViewController {
 //
 //        }
 //    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "seg_initiative_to_add" {
+            if let addInitiativeController = segue.destination as?
+                AddInitiativeViewController {
+                //Set delegate to self
+                addInitiativeController.delegate = self
+            }
+        }
+        if segue.identifier == "initiativeToEdit"{
+                    let detailed_view = segue.destination as! EditInitiativeViewController
+                    detailed_view.selectedInitiative = selectedIn
+        
+                }
+    }
     
     //Self delegate and dataSource then update the income amounts and texts
     override func viewDidLoad() {
@@ -139,12 +161,12 @@ extension InitiativeViewController: UITableViewDelegate, UITableViewDataSource{
        }
    }
     
-//   //perforn the segue for the table when a table is selected
-//   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//
-//       selectedIn = bills[indexPath.row]
-//       self.performSegue(withIdentifier: "IncomeToEdit", sender: self)
-//   }
+   //perforn the segue for the table when a table is selected
+   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+       selectedIn = initiatives[indexPath.row]
+       self.performSegue(withIdentifier: "initiativeToEdit", sender: self)
+   }
     
     
 }

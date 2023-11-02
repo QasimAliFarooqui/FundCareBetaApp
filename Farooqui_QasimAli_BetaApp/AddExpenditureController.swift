@@ -8,7 +8,13 @@
 import UIKit
 import CoreData
 
+protocol AddExpenditureDelegate: AnyObject {
+    func didAddExpenditure()
+}
+
 class AddExpenditureController: UIViewController {
+    
+    weak var delegate: AddExpenditureDelegate?
     
     @IBOutlet weak var expenseDesc: UITextField!
     @IBOutlet weak var expenditureAmount: UITextField!
@@ -43,6 +49,8 @@ class AddExpenditureController: UIViewController {
         newSummary.date = expenditureDate.date
         self.summary.append(newSummary)
         saveSummary()
+        
+        delegate?.didAddExpenditure()
         
         //self.performSegue(withIdentifier: "seg_expenditure_to_add", sender: self)
 
@@ -95,7 +103,13 @@ class AddExpenditureController: UIViewController {
 //create an alert for adding expense  and navigate back to the expense view
     func createAlert(title: String, msg:String){
         let alert = UIAlertController(title:title, message:msg,preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title:"Done",style:.cancel,handler:{_ in self.dismiss(animated: true, completion:nil)}))
+        alert.addAction(UIAlertAction(title: "Done", style: .cancel, handler: { _ in
+                    self.dismiss(animated: true, completion: nil)
+                    //self.delegate?.didAddExpenditure()
+                }))
+        //Working
+        //alert.addAction(UIAlertAction(title:"Done",style:.cancel,handler:{_ in self.dismiss(animated: true, completion:nil)}))
+        //Not useful here
         //        alert.addAction(UIAlertAction(title:"Done",style:.cancel,handler:{ (action: UIAlertAction!) in
         //            _=self.navigationController?.popToRootViewController(animated: true)
         //        }))

@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class DonationsViewController: UIViewController {
+class DonationsViewController: UIViewController, AddDonationDelegate {
 
     //Create object variables and context and the reload data function
     var bills:[Donations] = []
@@ -23,6 +23,13 @@ class DonationsViewController: UIViewController {
         DispatchQueue.main.async(execute:{self.donationTable.reloadData()})
     }
     
+    //Implementing the delegate method.
+    func didAddDonation() {
+        DispatchQueue.main.async {
+                self.viewDidLoad()
+            }
+    }
+    
     //Prepare the segue to IncomeToEdit for editing rows
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 //        // Get the new view controller using segue.destination.
@@ -33,6 +40,19 @@ class DonationsViewController: UIViewController {
 //            
 //        }
 //    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            if segue.identifier == "seg_donate_to_add" {
+                if let addDonationController = segue.destination as? AddDonationsController {
+                    // Set the delegate to self
+                    addDonationController.delegate = self
+                }
+            }
+            if segue.identifier == "donationToEdit"{
+                let detailed_view = segue.destination as! EditDonationViewController
+                detailed_view.selectedDonation = selectedIn
+            }
+    }
     
     
     //Self delegate and dataSource then update the income amounts and texts
@@ -93,6 +113,7 @@ extension DonationsViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
+    
     //Return the incomeCell with the correct tags and labels, format the date and return the cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = tableView.dequeueReusableCell(withIdentifier: "donationCell", for: indexPath)
@@ -117,6 +138,7 @@ extension DonationsViewController: UITableViewDelegate, UITableViewDataSource{
         }
             return cell
         }
+    
     //Delete cell when swiped to the left, delete from the core data and end the updates. Reload the data
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
        let expense = self.bills[indexPath.row]
@@ -163,12 +185,11 @@ extension DonationsViewController: UITableViewDelegate, UITableViewDataSource{
         return nil
     }
     
-//   //perforn the segue for the table when a table is selected
-//   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//   
-//       selectedIn = bills[indexPath.row]
-//       self.performSegue(withIdentifier: "IncomeToEdit", sender: self)
-//   }
+   //perforn the segue for the table when a table is selected
+   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+       selectedIn = bills[indexPath.row]
+       self.performSegue(withIdentifier: "donationToEdit", sender: self)
+   }
     
     
 }

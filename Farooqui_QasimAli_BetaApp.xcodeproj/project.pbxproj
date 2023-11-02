@@ -26,6 +26,10 @@
 		DD85A3F42AF03CF000A9EC5B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD85A3F32AF03CF000A9EC5B /* SignUpViewController.swift */; };
 		DD85A3F62AF03D4900A9EC5B /* UserDonationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD85A3F52AF03D4900A9EC5B /* UserDonationViewController.swift */; };
 		DD85A3F82AF03D5400A9EC5B /* UserAppealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD85A3F72AF03D5400A9EC5B /* UserAppealViewController.swift */; };
+		DD85A3FA2AF2C31E00A9EC5B /* EditDonationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD85A3F92AF2C31E00A9EC5B /* EditDonationViewController.swift */; };
+		DD85A3FC2AF2C33700A9EC5B /* EditExpenditureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD85A3FB2AF2C33700A9EC5B /* EditExpenditureViewController.swift */; };
+		DD85A3FE2AF2D34900A9EC5B /* EditAppealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD85A3FD2AF2D34900A9EC5B /* EditAppealViewController.swift */; };
+		DD85A4002AF2E0D500A9EC5B /* EditInitiativeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD85A3FF2AF2E0D500A9EC5B /* EditInitiativeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +54,10 @@
 		DD85A3F32AF03CF000A9EC5B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		DD85A3F52AF03D4900A9EC5B /* UserDonationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDonationViewController.swift; sourceTree = "<group>"; };
 		DD85A3F72AF03D5400A9EC5B /* UserAppealViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAppealViewController.swift; sourceTree = "<group>"; };
+		DD85A3F92AF2C31E00A9EC5B /* EditDonationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDonationViewController.swift; sourceTree = "<group>"; };
+		DD85A3FB2AF2C33700A9EC5B /* EditExpenditureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExpenditureViewController.swift; sourceTree = "<group>"; };
+		DD85A3FD2AF2D34900A9EC5B /* EditAppealViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAppealViewController.swift; sourceTree = "<group>"; };
+		DD85A3FF2AF2E0D500A9EC5B /* EditInitiativeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditInitiativeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +110,10 @@
 				DD85A3F32AF03CF000A9EC5B /* SignUpViewController.swift */,
 				DD85A3F52AF03D4900A9EC5B /* UserDonationViewController.swift */,
 				DD85A3F72AF03D5400A9EC5B /* UserAppealViewController.swift */,
+				DD85A3F92AF2C31E00A9EC5B /* EditDonationViewController.swift */,
+				DD85A3FB2AF2C33700A9EC5B /* EditExpenditureViewController.swift */,
+				DD85A3FD2AF2D34900A9EC5B /* EditAppealViewController.swift */,
+				DD85A3FF2AF2E0D500A9EC5B /* EditInitiativeViewController.swift */,
 			);
 			path = Farooqui_QasimAli_BetaApp;
 			sourceTree = "<group>";
@@ -177,15 +189,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD85A4002AF2E0D500A9EC5B /* EditInitiativeViewController.swift in Sources */,
 				DD0EEB542AEC8E1C00347E2A /* InitiativeViewController.swift in Sources */,
 				DD0EEB372AE7109A00347E2A /* ViewController.swift in Sources */,
 				DD0EEB562AEC917200347E2A /* AddInitiativeViewController.swift in Sources */,
 				DD0EEB522AEB6B7600347E2A /* AppealViewController.swift in Sources */,
 				DD0EEB4C2AE737EE00347E2A /* FundCare.xcdatamodeld in Sources */,
+				DD85A3FA2AF2C31E00A9EC5B /* EditDonationViewController.swift in Sources */,
 				DD0EEB492AE7335A00347E2A /* ExpenditureViewController.swift in Sources */,
 				DD85A3F22AF03CBD00A9EC5B /* LogInViewController.swift in Sources */,
 				DD0EEB502AE7512800347E2A /* AddDonationsController.swift in Sources */,
 				DD85A3F42AF03CF000A9EC5B /* SignUpViewController.swift in Sources */,
+				DD85A3FE2AF2D34900A9EC5B /* EditAppealViewController.swift in Sources */,
+				DD85A3FC2AF2C33700A9EC5B /* EditExpenditureViewController.swift in Sources */,
 				DD0EEB332AE7109A00347E2A /* AppDelegate.swift in Sources */,
 				DD85A3F82AF03D5400A9EC5B /* UserAppealViewController.swift in Sources */,
 				DD0EEB4E2AE7511300347E2A /* AddExpenditureController.swift in Sources */,

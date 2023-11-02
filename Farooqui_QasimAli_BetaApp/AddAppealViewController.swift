@@ -8,7 +8,13 @@
 import UIKit
 import CoreData
 
+protocol AddAppealDelegate: AnyObject {
+    func didAddAppeal()
+}
+
 class AddAppealViewController: UIViewController {
+    
+    weak var delegate: AddAppealDelegate?
 
     @IBOutlet weak var appealDesc: UITextField!
     @IBOutlet weak var appealAmount: UITextField!
@@ -32,6 +38,8 @@ class AddAppealViewController: UIViewController {
         newAppeal.date = appealDate.date
         self.appeals.append(newAppeal)
         saveAppeals()
+        
+        delegate?.didAddAppeal()
         
         createAlert(title:"Added Appeal",msg:"Your appeal has been successfully added!")
 

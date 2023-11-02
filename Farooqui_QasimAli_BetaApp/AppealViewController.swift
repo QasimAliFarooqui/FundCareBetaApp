@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class AppealViewController: UIViewController {
+class AppealViewController: UIViewController, AddAppealDelegate {
 
     //Create object variables and context and the reload data function
     var appeals:[Appeal] = []
@@ -33,6 +33,13 @@ class AppealViewController: UIViewController {
 //
 //        }
 //    }
+    
+    //Implementing the delegate method.
+    func didAddAppeal() {
+        DispatchQueue.main.async {
+            self.viewDidLoad()
+            }
+       }
     
     //Self delegate and dataSource then update the income amounts and texts
     override func viewDidLoad() {
@@ -62,6 +69,21 @@ class AppealViewController: UIViewController {
        // }catch{}
         
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            if segue.identifier == "seg_appeal_to_add" {
+                if let addAppealController = segue.destination as? AddAppealViewController {
+                    // Set the delegate to self
+                    addAppealController.delegate = self
+                }
+            }
+        if segue.identifier == "appealToEdit"{
+                let detailed_view = segue.destination as! EditAppealViewController
+                detailed_view.selectedAppeal = selectedIn
+    
+        }
+    }
+    
     //Create override for viewDidAppear to reload data and fetch the expense from the core data
     override func viewDidAppear(_ animated: Bool) {
         self.viewDidLoad()
@@ -139,12 +161,12 @@ extension AppealViewController: UITableViewDelegate, UITableViewDataSource{
        }
    }
     
-//   //perforn the segue for the table when a table is selected
-//   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//
-//       selectedIn = bills[indexPath.row]
-//       self.performSegue(withIdentifier: "IncomeToEdit", sender: self)
-//   }
+   //perforn the segue for the table when a table is selected
+   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+       selectedIn = appeals[indexPath.row]
+       self.performSegue(withIdentifier: "appealToEdit", sender: self)
+   }
     
     
 }

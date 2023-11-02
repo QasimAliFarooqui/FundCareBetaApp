@@ -8,7 +8,13 @@
 import UIKit
 import CoreData
 
+protocol AddDonationDelegate: AnyObject {
+    func didAddDonation()
+}
+
 class AddDonationsController: UIViewController {
+    
+    weak var delegate: AddDonationDelegate?
     
     @IBOutlet weak var donationDesc: UITextField!
     @IBOutlet weak var donationAmount: UITextField!
@@ -41,6 +47,8 @@ class AddDonationsController: UIViewController {
         newSummary.date = donationDate.date
         self.summary.append(newSummary)
         saveSummary()
+        
+        delegate?.didAddDonation()
         
         createAlert(title:"Added Donation",msg:"Your donation has been successfully added!")
 
@@ -87,8 +95,10 @@ class AddDonationsController: UIViewController {
     //Create alert with Done button and send back to income view controller
     func createAlert(title: String, msg:String){
         let alert = UIAlertController(title:title, message:msg,preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title:"Done",style:.cancel,handler:{_ in self.dismiss(animated: true, completion:nil)}))
-        super.viewDidLoad()
+        alert.addAction(UIAlertAction(title:"Done",style:.cancel,handler:{_ in self.dismiss(animated: true, completion:nil)
+            
+            }))
+        //super.viewDidLoad()
         //        alert.addAction(UIAlertAction(title:"Done",style:.cancel,handler:{ (action: UIAlertAction!) in
         //            _=self.navigationController?.popToRootViewController(animated: true)
         //        }))

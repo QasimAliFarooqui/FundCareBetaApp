@@ -8,7 +8,13 @@
 import UIKit
 import CoreData
 
+protocol AddInitiativeDelegate: AnyObject {
+    func didAddInitiative()
+}
+
 class AddInitiativeViewController: UIViewController {
+    
+    weak var delegate: AddInitiativeDelegate?
 
     @IBOutlet weak var initiativeDesc: UITextField!
     @IBOutlet weak var initiativeAmount: UITextField!
@@ -31,6 +37,8 @@ class AddInitiativeViewController: UIViewController {
         newInitiative.date = initiativeDate.date
         self.initiatives.append(newInitiative)
         saveInitiatives()
+        
+        delegate?.didAddInitiative()
         
         createAlert(title:"Added Initiative",msg:"Your initiative has been successfully added!")
 
