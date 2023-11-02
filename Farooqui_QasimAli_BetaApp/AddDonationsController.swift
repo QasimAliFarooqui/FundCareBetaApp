@@ -98,10 +98,6 @@ class AddDonationsController: UIViewController {
         alert.addAction(UIAlertAction(title:"Done",style:.cancel,handler:{_ in self.dismiss(animated: true, completion:nil)
             
             }))
-        //super.viewDidLoad()
-        //        alert.addAction(UIAlertAction(title:"Done",style:.cancel,handler:{ (action: UIAlertAction!) in
-        //            _=self.navigationController?.popToRootViewController(animated: true)
-        //        }))
         self.present(alert, animated: true, completion:nil)
     }
 

@@ -107,12 +107,6 @@ class AddExpenditureController: UIViewController {
                     self.dismiss(animated: true, completion: nil)
                     //self.delegate?.didAddExpenditure()
                 }))
-        //Working
-        //alert.addAction(UIAlertAction(title:"Done",style:.cancel,handler:{_ in self.dismiss(animated: true, completion:nil)}))
-        //Not useful here
-        //        alert.addAction(UIAlertAction(title:"Done",style:.cancel,handler:{ (action: UIAlertAction!) in
-        //            _=self.navigationController?.popToRootViewController(animated: true)
-        //        }))
         self.present(alert, animated: true, completion:nil)
     }
 

@@ -56,16 +56,6 @@ class ExpenditureViewController: UIViewController, AddExpenditureDelegate {
             }
        }
     
-//    //Prepare the segue, send the current row to EditExpenseController and set the destination
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        // Get the new view controller using segue.destination.
-//        // Pass the selected object to the new view controller.
-//        if segue.identifier == "ExpenseToEdit"{
-//            let detailed_view = segue.destination as! EditExpenseViewController
-//            detailed_view.selectedBill = selectedBill
-//
-//        }
-//    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
             if segue.identifier == "seg_expenditure_to_add" {

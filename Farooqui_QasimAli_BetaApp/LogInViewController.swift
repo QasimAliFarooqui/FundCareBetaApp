@@ -48,21 +48,7 @@ class LogInViewController: UIViewController, signUpDelegate {
     }
     
     @IBAction func signIn(_ sender: Any) {
-//        if (userNameInput.text?.count)! > 0 && (passInput.text?.count)! > 0{
-//                   
-//                   if(userNamePassDict[userNameInput.text!] == passInput.text!){
-//                       userName = self.userNameInput.text!
-//                       self.userNameInput.text = ""
-//                       self.passInput.text = ""
-//                       performSegue(withIdentifier: "homeToAdminView", sender: self)
-//                       
-//                   } else {
-//                       createAlert(title: "Invalid Entry!", msg: "Combination of User Name and  Password is not valid")
-//                   }
-//                   
-//               } else {
-//                   createAlert(title: "Missing Entry!", msg: "Missing User Name or Password")
-//               }
+
         guard let username = userNameInput.text, let password = passInput.text else {
                 createAlert(title: "Missing Entry!", msg: "Missing User Name or Password")
                 return

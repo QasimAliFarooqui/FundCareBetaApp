@@ -23,16 +23,6 @@ class AppealViewController: UIViewController, AddAppealDelegate {
         DispatchQueue.main.async(execute:{self.appealTable.reloadData()})
     }
     
-    //Prepare the segue to IncomeToEdit for editing rows
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        // Get the new view controller using segue.destination.
-//        // Pass the selected object to the new view controller.
-//        if segue.identifier == "IncomeToEdit"{
-//            let detailed_view = segue.destination as! EditIncomeController
-//            detailed_view.selectedBill = selectedIn
-//
-//        }
-//    }
     
     //Implementing the delegate method.
     func didAddAppeal() {
