@@ -45,7 +45,7 @@ class DonationsViewController: UIViewController, AddDonationDelegate {
     }
     
     
-    //Self delegate and dataSource then update the income amounts and texts
+    //Self delegate and dataSource then update the donations amounts and texts
     override func viewDidLoad() {
         super.viewDidLoad()
         donationTable.delegate = self
@@ -59,25 +59,14 @@ class DonationsViewController: UIViewController, AddDonationDelegate {
         totalDonations.text = "$\(round(income*100)/100)"
         self.donationTable.separatorStyle = UITableViewCell.SeparatorStyle.none
         
-        // Do any additional setup after loading the view.
-        
-        
-        //To Delete Everything in Expenses
-        
-        //for object in bills!{
-           // context.delete(object)
-       // }
-        
-        //do{
-        //    try context.save()
-       // }catch{}
-        
     }
+    
     //Create override for viewDidAppear to reload data and fetch the expense from the core data
     override func viewDidAppear(_ animated: Bool) {
         self.viewDidLoad()
         reloadData()
     }
+    
     func fetchBills(with request: NSFetchRequest<Donations> = Donations.fetchRequest()){
         //Fetch the data from Core Data to displau in the tableview
         //context.

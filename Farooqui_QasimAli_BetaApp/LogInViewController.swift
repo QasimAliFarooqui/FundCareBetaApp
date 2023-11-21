@@ -17,6 +17,7 @@ class LogInViewController: UIViewController, signUpDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        passInput.isSecureTextEntry = true
         // Do any additional setup after loading the view.
     }
     
@@ -54,7 +55,7 @@ class LogInViewController: UIViewController, signUpDelegate {
                 return
             }
 
-            if let storedPassword = userNamePassDict[username], storedPassword == password {
+            if let storedPassword = userNamePassDict[username], storedPassword == password, !password.isEmpty {
                 // Successful login
                 userName = username
                 userNameInput.text = ""

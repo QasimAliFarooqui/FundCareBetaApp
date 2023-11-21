@@ -10,7 +10,7 @@ import CoreData
 
 class ExpenditureViewController: UIViewController, AddExpenditureDelegate {
 
-    //Expense entity to change later and context
+    //Expenditure entity to change later and context
     var bills:[Expenditure]?
     var selectedBill = Expenditure()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -18,7 +18,7 @@ class ExpenditureViewController: UIViewController, AddExpenditureDelegate {
     @IBOutlet weak var totalExpenditure: UILabel!
     @IBOutlet weak var expenditureTable: UITableView!
   
-    //In the viewDidLoad the delegate and datasource are made to self. Reload the data and set expense to 0 while increasing amount. Set to keep the overall amounts up to date
+    //In the viewDidLoad the delegate and datasource are made to self. Reload the data and set expenditure to 0 while increasing amount. Set to keep the overall amounts up to date
     override func viewDidLoad() {
         super.viewDidLoad()
         expenditureTable.delegate = self
@@ -32,15 +32,6 @@ class ExpenditureViewController: UIViewController, AddExpenditureDelegate {
         totalExpenditure.text = "$\(round(expense*100)/100)"
 
         self.expenditureTable.separatorStyle = UITableViewCell.SeparatorStyle.none
-        // Do any additional setup after loading the view.
-        //To Delete Everything in Expenses
-        //for object in bills!{
-           // context.delete(object)
-       // }
-        
-        //do{
-        //    try context.save()
-       // }catch{}
     }
     
     //Reload the data for the expense table

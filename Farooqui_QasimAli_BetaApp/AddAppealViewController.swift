@@ -32,17 +32,28 @@ class AddAppealViewController: UIViewController {
     //Add Appeal Button for new appeal for the appeal entity. Create the alert after adding
     
     @IBAction func addAppealButton(_ sender: Any) {
-        let newAppeal = Appeal(context: self.context)
-        newAppeal.title = appealDesc.text!
-        newAppeal.amount = Double(appealAmount.text!) ?? 0.0
-        newAppeal.date = appealDate.date
-        self.appeals.append(newAppeal)
-        saveAppeals()
         
-        delegate?.didAddAppeal()
-        
-        createAlert(title:"Added Appeal",msg:"Your appeal has been successfully added!")
+        // Validate description
+        guard let description = appealDesc.text, !description.isEmpty, description.count <= 25 else {
+            createAlert(title: "Invalid Description", msg: "Description should not be empty and should have at most 25 characters.")
+            return
+        }
 
+        // Validate amount
+        guard let amountStr = appealAmount.text, let amount = Double(amountStr), amount > 0, amount < 1000000 else {
+            createAlert(title: "Invalid Amount", msg: "Amount should be a valid number greater than 0 and less than 1000000.")
+            return
+        }
+        
+        let newAppeal = Appeal(context: context)
+        newAppeal.title = description
+        newAppeal.amount = amount
+        newAppeal.date = appealDate.date
+        appeals.append(newAppeal)
+        saveAppeals()
+
+        delegate?.didAddAppeal()
+        createAlert(title: "Added Appeal", msg: "Your appeal has been successfully added!")
     }
     
     //Save bills into context and fetch the appeal object
@@ -70,9 +81,6 @@ class AddAppealViewController: UIViewController {
         let alert = UIAlertController(title:title, message:msg,preferredStyle: .alert)
         alert.addAction(UIAlertAction(title:"Done",style:.cancel,handler:{_ in self.dismiss(animated: true, completion:nil)}))
         super.viewDidLoad()
-        //        alert.addAction(UIAlertAction(title:"Done",style:.cancel,handler:{ (action: UIAlertAction!) in
-        //            _=self.navigationController?.popToRootViewController(animated: true)
-        //        }))
         self.present(alert, animated: true, completion:nil)
     }
 

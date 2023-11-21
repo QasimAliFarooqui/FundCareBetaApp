@@ -25,21 +25,33 @@ class UserDonationViewController: UIViewController {
     }
     
     @IBAction func addDonation(_ sender: Any) {
+        // Validate title
+        guard let titleText = donationDesc.text, !titleText.isEmpty, titleText.count <= 25 else {
+            createAlert(title: "Invalid Title", msg: "Title should not be empty and should have at most 25 characters.")
+            return
+        }
+
+        // Validate amount
+        guard let amountText = donationAmount.text, let amountValue = Double(amountText), amountValue > 0, amountValue < 1000000 else {
+            createAlert(title: "Invalid Amount", msg: "Amount should be a valid number greater than 0 and less than 1000000.")
+            return
+        }
+
         let newDonation = Donations(context: self.context)
-        newDonation.title = donationDesc.text!
-        newDonation.amount = Double(donationAmount.text!) ?? 0.0
+        newDonation.title = titleText
+        newDonation.amount = amountValue
         newDonation.date = donationDate.date
         self.donations.append(newDonation)
         saveDonations()
-        
+
         let newSummary = Summary(context: self.context)
-        newSummary.title = donationDesc.text!
-        newSummary.amount = Double(donationAmount.text!) ?? 0.0
+        newSummary.title = titleText
+        newSummary.amount = amountValue
         newSummary.date = donationDate.date
         self.summary.append(newSummary)
         saveSummary()
-        
-        createAlert(title:"Added Donation",msg:"Your donation has been successfully added!")
+
+        createAlert(title: "Added Donation", msg: "Your donation has been successfully added!")
     }
     
     //Save bills  into context and fetch the income object

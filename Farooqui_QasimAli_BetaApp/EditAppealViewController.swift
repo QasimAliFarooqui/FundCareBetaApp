@@ -32,31 +32,44 @@ class EditAppealViewController: UIViewController {
             changeMade()
     }
 
-    func changeMade(){
-        title2 = title1.text!
-        amount2 = Double(amount1.text!)!
+    func changeMade() {
+        // Validate title
+        guard let titleText = title1.text, !titleText.isEmpty, titleText.count <= 25 else {
+            createAlert(title: "Invalid Title", msg: "Title should not be empty and should have at most 25 characters.")
+            return
+        }
+
+        // Validate amount
+        guard let amountText = amount1.text, let amountValue = Double(amountText), amountValue > 0, amountValue < 1000000 else {
+            createAlert(title: "Invalid Amount", msg: "Amount should be a valid number greater than 0 and less than 1000000.")
+            return
+        }
+
+        title2 = titleText
+        amount2 = amountValue
         date2 = date1.date
-        
+
         var appeal = selectedAppeal
         var fetchrequest: NSFetchRequest<Appeal> = Appeal.fetchRequest()
-        fetchrequest.predicate = NSPredicate(format: "title = %@",selectedAppeal.title!)
+        fetchrequest.predicate = NSPredicate(format: "title = %@", selectedAppeal.title!)
         let results = try? context.fetch(fetchrequest)
-        if results?.count == 0{
+        if results?.count == 0 {
             appeal = Appeal(context: context)
-        }else{
+        } else {
             appeal = (results?.first)!
         }
-        
+
         appeal.title = title2
         appeal.amount = amount2
         appeal.date = date2
-        do{
-        try context.save()
-        }catch{}
-        createAlert(title:"Editted Appeal",msg:"Your Appeal has been successfully editted!")
-
-
+        do {
+            try context.save()
+        } catch {
+            print("Error saving context \(error)")
+        }
+        createAlert(title: "Edited Appeal", msg: "Your Appeal has been successfully edited!")
     }
+
     //Create alert with a Done button then send back to the Initiative controller
     func createAlert(title: String, msg:String){
         let alert = UIAlertController(title:title, message:msg,preferredStyle: .alert)

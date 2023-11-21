@@ -60,18 +60,6 @@ class InitiativeViewController: UIViewController, AddInitiativeDelegate {
         totalInitiatives.text = "$\(round(initiative*100)/100)"
         self.initiativeTable.separatorStyle = UITableViewCell.SeparatorStyle.none
         
-        // Do any additional setup after loading the view.
-        
-        
-        //To Delete Everything in Expenses
-        
-        //for object in bills!{
-           // context.delete(object)
-       // }
-        
-        //do{
-        //    try context.save()
-       // }catch{}
         
     }
     //Create override for viewDidAppear to reload data and fetch the expense from the core data
@@ -105,7 +93,8 @@ extension InitiativeViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
-    //Return the incomeCell with the correct tags and labels, format the date and return the cell
+    
+    //Return the initiativeCell with the correct tags and labels, format the date and return the cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = tableView.dequeueReusableCell(withIdentifier: "initiativeCell", for: indexPath)
         
@@ -136,7 +125,6 @@ extension InitiativeViewController: UITableViewDelegate, UITableViewDataSource{
        if editingStyle == UITableViewCell.EditingStyle.delete{
            initiativeTable.beginUpdates()
            context.delete(initiative)
-           //expenseTable.reloadData()
            do{
                try context.save()
 

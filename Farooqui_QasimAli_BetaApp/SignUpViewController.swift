@@ -24,6 +24,9 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Sign Up"
+        passInput.isSecureTextEntry = true // Set the password field to secure text entry
+        confirmPassInput.isSecureTextEntry = true // Set the confirm password field to secure text entry
+
     }
     
     @IBAction func signUp(_ sender: Any) {

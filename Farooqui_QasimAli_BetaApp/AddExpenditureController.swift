@@ -34,27 +34,36 @@ class AddExpenditureController: UIViewController {
     
     @IBAction func addExpenditureButton(_ sender: Any) {
         
-        let newExpenditure = Expenditure(context: self.context)
-        newExpenditure.title = expenseDesc.text!
-        newExpenditure.amount = Double(expenditureAmount.text!) ?? 0.0
+        // Validate description
+        guard let description = expenseDesc.text, !description.isEmpty, description.count <= 25 else {
+            createAlert(title: "Invalid Description", msg: "Description should not be empty and should have at most 25 characters.")
+            return
+        }
+        
+        // Validate amount
+        guard let amountStr = expenditureAmount.text, let amount = Double(amountStr), amount > 0, amount < 1000000 else {
+            createAlert(title: "Invalid Amount", msg: "Amount should be a valid number greater than 0 and less than 1000000.")
+            return
+        }
+        
+        let newExpenditure = Expenditure(context: context)
+        newExpenditure.title = description
+        newExpenditure.amount = amount
         newExpenditure.type = "Expenditure"
         newExpenditure.date = expenditureDate.date
-        self.bills.append(newExpenditure)
+        bills.append(newExpenditure)
         saveBills()
 
-        let newSummary = Summary(context: self.context)
-        newSummary.title = expenseDesc.text!
+        let newSummary = Summary(context: context)
+        newSummary.title = description
         newSummary.type = "Expenditure"
-        newSummary.amount = Double(expenditureAmount.text!) ?? 0.0
+        newSummary.amount = amount
         newSummary.date = expenditureDate.date
-        self.summary.append(newSummary)
+        summary.append(newSummary)
         saveSummary()
         
         delegate?.didAddExpenditure()
-        
-        //self.performSegue(withIdentifier: "seg_expenditure_to_add", sender: self)
-
-        createAlert(title:"Added Expenditure",msg:"Your expense has been successfully added!")
+        createAlert(title: "Added Expenditure", msg: "Your expense has been successfully added!")
     }
     
     //Save the context expense in the core data

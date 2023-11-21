@@ -26,15 +26,26 @@ class UserAppealViewController: UIViewController {
     //Add Appeal Button for new appeal for the appeal entity. Create the alert after adding
 
     @IBAction func addAppeal(_ sender: Any) {
+        // Validate title
+        guard let titleText = appealDesc.text, !titleText.isEmpty, titleText.count <= 25 else {
+            createAlert(title: "Invalid Title", msg: "Title should not be empty and should have at most 25 characters.")
+            return
+        }
+
+        // Validate amount
+        guard let amountText = appealAmount.text, let amountValue = Double(amountText), amountValue > 0, amountValue < 1000000 else {
+            createAlert(title: "Invalid Amount", msg: "Amount should be a valid number greater than 0 and less than 1000000.")
+            return
+        }
+
         let newAppeal = Appeal(context: self.context)
-        newAppeal.title = appealDesc.text!
-        newAppeal.amount = Double(appealAmount.text!) ?? 0.0
+        newAppeal.title = titleText
+        newAppeal.amount = amountValue
         newAppeal.date = appealDate.date
         self.appeals.append(newAppeal)
         saveAppeals()
-        
-        createAlert(title:"Added Appeal",msg:"Your appeal has been successfully added!")
 
+        createAlert(title: "Added Appeal", msg: "Your appeal has been successfully added!")
     }
     
     //Save bills into context and fetch the appeal object

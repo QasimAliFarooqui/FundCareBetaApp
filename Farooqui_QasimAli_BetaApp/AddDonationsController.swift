@@ -34,24 +34,35 @@ class AddDonationsController: UIViewController {
     //Add Income Button for new expense for the expense entity and also add it to the summary entity. Create the alert after adding
     
     @IBAction func addDonationButton(_ sender: Any) {
-        let newDonation = Donations(context: self.context)
-        newDonation.title = donationDesc.text!
-        newDonation.amount = Double(donationAmount.text!) ?? 0.0
-        newDonation.date = donationDate.date
-        self.bills.append(newDonation)
-        saveBills()
         
-        let newSummary = Summary(context: self.context)
-        newSummary.title = donationDesc.text!
-        newSummary.amount = Double(donationAmount.text!) ?? 0.0
-        newSummary.date = donationDate.date
-        self.summary.append(newSummary)
-        saveSummary()
-        
-        delegate?.didAddDonation()
-        
-        createAlert(title:"Added Donation",msg:"Your donation has been successfully added!")
+        // Validate description
+        guard let description = donationDesc.text, !description.isEmpty, description.count <= 25 else {
+            createAlert(title: "Invalid Description", msg: "Description should not be empty and should have at most 25 characters.")
+            return
+        }
 
+        // Validate amount
+        guard let amountStr = donationAmount.text, let amount = Double(amountStr), amount > 0, amount < 1000000 else {
+            createAlert(title: "Invalid Amount", msg: "Amount should be a valid number greater than 0 and less than 1000000.")
+            return
+        }
+        
+        let newDonation = Donations(context: context)
+        newDonation.title = description
+        newDonation.amount = amount
+        newDonation.date = donationDate.date
+        bills.append(newDonation)
+        saveBills()
+
+        let newSummary = Summary(context: context)
+        newSummary.title = description
+        newSummary.amount = amount
+        newSummary.date = donationDate.date
+        summary.append(newSummary)
+        saveSummary()
+
+        delegate?.didAddDonation()
+        createAlert(title: "Added Donation", msg: "Your donation has been successfully added!")
     }
     
     //Save bills  into context and fetch the income object
