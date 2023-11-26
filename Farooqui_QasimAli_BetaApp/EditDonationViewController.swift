@@ -64,10 +64,30 @@ class EditDonationViewController: UIViewController {
         } else {
             bill = (results?.first)!
         }
-
+        
+        // Update the corresponding summary record
+        var summary: Summary?
+        let summaryFetchRequest: NSFetchRequest<Summary> = Summary.fetchRequest()
+        summaryFetchRequest.predicate = NSPredicate(format: "title = %@", selectedDonation.title!)
+        let summaryResults = try? context.fetch(summaryFetchRequest)
+        
+        if summaryResults?.count == 0 {
+            // If summary record doesn't exist, create a new one
+            summary = Summary(context: context)
+            summary?.title = title2
+        } else {
+            // If summary record exists, update it
+            summary = summaryResults?.first
+        }
+        
         bill.title = title2
         bill.amount = amount2
         bill.date = date2
+
+        summary?.title = title2
+        summary?.amount = amount2
+        summary?.date = date2
+        
         do {
             try context.save()
         } catch {
