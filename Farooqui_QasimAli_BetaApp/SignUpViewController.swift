@@ -30,24 +30,39 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func signUp(_ sender: Any) {
-        if (userNameInput.text?.count)! > 0 && (passInput.text?.count)! > 0 &&
-            (confirmPassInput.text?.count)! > 0{
-            if passInput.text == confirmPassInput.text{
-                userName = self.userNameInput.text!
-                userPass = self.passInput.text!
-                self.passInput.text = ""
-                self.confirmPassInput.text = ""
-                self.userNameInput.text = ""
+        if let userName = userNameInput.text, let password = passInput.text, let confirmPassword = confirmPassInput.text {
+            
+            // Validate username length
+            if userName.count <= 15 {
                 
-                performSegue(withIdentifier: "signUpToUserView" , sender: self)
+                // Validate password length and format
+                let passwordRegex = "^(?=.*[A-Z])(?=.*[0-9]).{8,}$"
+                let passwordPredicate = NSPredicate(format: "SELF MATCHES %@", passwordRegex)
+                
+                if passwordPredicate.evaluate(with: password) {
+                    
+                    if password == confirmPassword {
+                        self.userName = userName
+                        self.userPass = password
+                        
+                        // Clear input fields
+                        self.passInput.text = ""
+                        self.confirmPassInput.text = ""
+                        self.userNameInput.text = ""
+                        
+                        performSegue(withIdentifier: "signUpToUserView" , sender: self)
+                    } else {
+                        createAlert(title: "Password Mismatch!", msg: "Password and Confirm Password do not match")
+                    }
+                } else {
+                    createAlert(title: "Invalid Password!", msg: "Password must be at least 8 characters with a capital letter and a number")
                 }
-            else{
-                createAlert(title: "Password Mismatch!", msg: "Password and Confirm Password does not match")
+            } else {
+                createAlert(title: "Invalid Username!", msg: "Username must be no more than 15 characters")
             }
+        } else {
+            createAlert(title: "Missing Entry!", msg: "Missing Username, Password, or Confirm Password")
         }
-        else {
-                   createAlert(title: "Missing Entry!", msg: "Missing UserName, Password, or Confirm Password")
-               }
     }
     
     func createAlert(title: String, msg: String) {

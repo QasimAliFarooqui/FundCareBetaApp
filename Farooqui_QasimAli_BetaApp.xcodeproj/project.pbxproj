@@ -50,6 +50,7 @@
 		DD0EEB532AEC8E1C00347E2A /* InitiativeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitiativeViewController.swift; sourceTree = "<group>"; };
 		DD0EEB552AEC917200347E2A /* AddInitiativeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInitiativeViewController.swift; sourceTree = "<group>"; };
 		DD0EEB572AEC918400347E2A /* AddAppealViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAppealViewController.swift; sourceTree = "<group>"; };
+		DD6DBE782B17D9EA00432CF3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		DD85A3F12AF03CBD00A9EC5B /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		DD85A3F32AF03CF000A9EC5B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		DD85A3F52AF03D4900A9EC5B /* UserDonationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDonationViewController.swift; sourceTree = "<group>"; };
@@ -90,6 +91,7 @@
 		DD0EEB312AE7109A00347E2A /* Farooqui_QasimAli_BetaApp */ = {
 			isa = PBXGroup;
 			children = (
+				DD6DBE782B17D9EA00432CF3 /* README.md */,
 				DD0EEB322AE7109A00347E2A /* AppDelegate.swift */,
 				DD0EEB342AE7109A00347E2A /* SceneDelegate.swift */,
 				DD0EEB362AE7109A00347E2A /* ViewController.swift */,
